@@ -1,0 +1,41 @@
+﻿<Window x:Class="ParserHtmlWpf.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+       
+        mc:Ignorable="d"
+        Title="ParserHtmlWpf" Height="464" Width="1000">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.3*" MaxWidth="90"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <ListBox  ItemsSource="{Binding UrlInfoModel}" Grid.Column="1" HorizontalContentAlignment="Stretch">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <ProgressBar Grid.Column="0" Minimum="0" Maximum="100" Value="{Binding ProgressBar}"  />
+                        <TextBlock  Grid.Column="0" Text="{Binding CountTags}" FontSize="25" HorizontalAlignment="Right" />
+                        <TextBlock Grid.Column="0" Text="Итого:" FontSize="20" HorizontalAlignment="Left"/>
+                        <TextBlock  Grid.Column="1" Text="{Binding Url}" FontSize="25"/>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Button  Grid.Row="0" Content="Загрузить Url&#xa; из файла" Command="{Binding LoadCommand}" />
+            <Button  Grid.Row="1" Content="Старт" Command="{Binding StartCommand}"/>
+            <Button  Grid.Row="2" Content="Остановить" Command="{Binding StopCommand}" />
+        </Grid>
+    </Grid>
+</Window>
